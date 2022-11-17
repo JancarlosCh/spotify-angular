@@ -1,6 +1,6 @@
 <!-- Diseño de tarjeta pequeña -->
 <div *ngIf="mode === 'small'" class="card-player player-small">
-    <img appImgBroken [src]="track.cover" [alt]="track.name" class="cover">
+    <img appImgBroken [customImage]="'https://seeklogo.com/images/A/angular-logo-B76B1CDE98-seeklogo.com.png'" [src]="track.cover" [alt]="track.name" class="cover">
     <div class="content-player">{{track.name}}</div>
     <div class="buttons-player">
         <button *ngIf="true" class="play-btn">
@@ -14,7 +14,7 @@
 
 <!-- Diseño de tarjeta grande -->
 <div *ngIf="mode === 'big'" class="card-player player-big">
-    <img appImgBroken [src]="track.cover" [alt]="track.name" class="cover">
+    <img appImgBroken [customImage]="'https://seeklogo.com/images/A/angular-logo-B76B1CDE98-seeklogo.com.png'" [src]="track.cover" [alt]="track.name" class="cover">
     <div class="content-player">
         <div class="title-card">{{track.name}}</div>
         <div class="sub-title-card">{{track.album}}</div>

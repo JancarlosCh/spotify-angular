@@ -10,7 +10,8 @@ import { PlayListHeaderComponent } from './components/play-list-header/play-list
 import { PlayListBodyComponent } from './components/play-list-body/play-list-body.component';
 import { RouterModule } from '@angular/router';
 import { SortListPipe } from './pipes/sort-list.pipe';
-import { ImgBrokenDirective } from './components/directives/img-broken.directive';
+import { ImgBrokenDirective } from './directives/img-broken.directive';
+
 
 // export -> aquí van los componentes que queremos compartir con otros módulos
 @NgModule({

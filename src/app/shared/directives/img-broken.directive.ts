@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, Input, ElementRef, HostListener } from '@angular/core';
 
 /**
  * @Directive-> Alteran la estructura del DOM, agregando, eliminando 
@@ -16,13 +16,14 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
  */
 
 export class ImgBrokenDirective {
+    @Input() customImage: string = '';
     /**
      * @HostListener(event) nombrefunción(): tipo {} 
      * -> se encarga de escuchar los eventos de un host
      */
     @HostListener('error') handleError(): void {
         const nativeElement = this.elHost.nativeElement;
-        nativeElement.src = 'https://pbs.twimg.com/profile_images/1341847898271657984/klVuCa_9_400x400.jpg'
+        nativeElement.src = this.customImage
     }
 
     /**
