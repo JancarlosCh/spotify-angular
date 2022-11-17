@@ -1,0 +1,45 @@
+<div class="side-bar">
+    <div class="uil uil-ellipsis-h"><i></i></div>
+    <ul class="side-bar__list list-one">
+        <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions">
+            <div class="list-wrapper-item">
+                <i [ngClass] = "['uil', item.icon]"></i>
+                <span class="side_bar__list list-label">{{item.name}}</span>
+            </div>
+        </li>
+    </ul>
+    <div class="side-bar__separator"></div>
+    <ul class="side-bar__list list-two">
+        <li *ngFor="let item of mainMenu.accessLink">
+            <div class="list-wrapper-item">
+                <i [ngClass]="['uil', item.icon]"></i>
+                <span class="side-bar__list list-label">{{item.name}}</span>
+            </div>
+        </li>
+    </ul>
+    <div class="side-bar__separator line-separator"></div>
+    <ul class="side-bar__list list-three">
+        <li *ngFor="let item of customOptions">
+            <div class="list-wrapper-item">
+                <span class="side-bar__list list-label">{{item.name}}</span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--
+    ngFor: esta directiva se utiliza para recorrer un array.
+
+    [ngClass]: esta directiva se utiliza para concatenar los valores de un array
+    como clases de un objeto o elemento.
+
+    La navegación entre páginas se puede realizar de dos formas:
+
+    1. usando uso de la directiva [routerLink] = "'ruta'", esto implica
+    que se deba importar RouterModule en el módulo que tiene el componente donde se e
+    stá implementando la directiva.
+
+    2. usando el evento (click) = "funcion($event)" el cual ejecuta una función
+    que previamente fue definida dentro del componente. Además, se debe definir
+    dentro del constructor el módulo Router para que pueda funcionar.
+-->
