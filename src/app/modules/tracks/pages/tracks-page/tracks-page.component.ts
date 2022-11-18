@@ -16,14 +16,14 @@ export class TracksPageComponent implements OnInit, OnDestroy {
     subscriptionList: Array<Subscription> = [];
 
     constructor(private _tracksService: TracksService) { }
-    
+
     ngOnInit(): void {
-       const subscription1$ = this._tracksService.dataTracksTrending$.subscribe(
-        (tracks) => {
-               this.trendingTracks = tracks;
-               this.randomTracks = tracks;
-        }
-       );
+        const subscription1$ = this._tracksService.dataTracksTrending$.subscribe(
+            (tracks) => {
+                this.trendingTracks = tracks;
+                this.randomTracks = tracks;
+            }
+        );
 
         const subscription2$ = this._tracksService.randomTracksData$.subscribe(
             (tracks) => {
