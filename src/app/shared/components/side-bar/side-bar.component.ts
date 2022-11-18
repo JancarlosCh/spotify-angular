@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TracksService } from '@modules/tracks/services/tracks.service';
+import { MultimediaService } from '@shared/services/multimedia.service';
 
 @Component({
     selector: 'app-slide-bar',
@@ -15,14 +17,14 @@ export class SideBarComponent implements OnInit {
 
     customOptions: Array<any> = [];
 
-    constructor() { }
+    constructor(private _trackService: TracksService, private _mService: MultimediaService) { }
 
     /**
      * ngOnInit -> hace parte del ciclo de vida del componente y se ejecuta
      * justo después del constructor, en este apartado se suelen llamar servicios, 
      * llenar variables, etc
      */
-    ngOnInit(): void { 
+    ngOnInit(): void {
         this.mainMenu.defaultOptions = [
             {
                 name: 'Home',
@@ -66,5 +68,25 @@ export class SideBarComponent implements OnInit {
                 name: 'Mi lista °4'
             }
         ]
-     }
+
+
+        // this._mService.callback.subscribe(
+        //     (track) => { 
+        //         const trackName = track.name
+        //         console.log("trackName: ", trackName)
+        //         this.customOptions.push(
+        //             {
+        //                 name: trackName
+        //             }
+        //         )
+        //     }
+        // )
+
+        // this._trackService.randomTracksData$.subscribe(u => {
+        //     this.customOptions.push(
+        //         { name: u[0].name }
+        //     )
+        // })
+
+    }
 }

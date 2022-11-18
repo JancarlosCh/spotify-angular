@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomePageComponent implements OnInit {
+    enable: boolean = true;
     constructor() { }
     ngOnInit(): void { }
 }

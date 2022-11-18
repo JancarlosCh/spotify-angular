@@ -50,6 +50,7 @@
     background-color: var(--color-1);
     width: 45px;
     height: 45px;
+    cursor: pointer;
 }
 
 .card-player.player-big {

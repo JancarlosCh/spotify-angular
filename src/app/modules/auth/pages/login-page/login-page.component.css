@@ -32,10 +32,10 @@
     width: 100%;
     font-size: var(--font-size-2);
     border-radius: var(--border-radius-2);
-    box-shadow: var(--shadow-1);
-    border: solid 1px var(--color-4);
+    box-shadow: var(--shadow-2);
     background-color: var(--color-4);
     font-weight: 600;
+    cursor: pointer;
 }
 
 .login-auth-page .login-social-zone .social-btn.btn-fb {
@@ -43,9 +43,21 @@
     color: var(--color-4);
 }
 
+.login-auth-page .login-social-zone .social-btn.btn-fb:hover {
+    background-color: #4475dd;
+}
+
 .login-auth-page .login-social-zone .social-btn.btn-apple {
     background-color: #1a1a1a;
     color: var(--color-4);
+}
+
+.login-auth-page .login-social-zone .social-btn.btn-apple:hover {
+    background-color: #404040;
+}
+
+.login-auth-page .login-social-zone .social-btn.btn-google:hover {
+    background-color: #f2f2f2;
 }
 
 .login-auth-page .separator {
@@ -104,6 +116,10 @@
     background-color: var(--color-1);
 }
 
+.login-auth-page .login-auth-form .form-action .login:enabled:hover {
+    background-color: #22d460;
+}
+
 input.ng-invalid.ng-touched {
-    border: solid 2px red !important
+    border: 1px solid red !important
 }
