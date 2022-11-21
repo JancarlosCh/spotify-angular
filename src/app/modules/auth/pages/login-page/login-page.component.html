@@ -19,6 +19,9 @@
             <div class="form-steps">
                 <a href="" class="link">¿Olvidaste tu contraseña?</a>
             </div>
+            <div *ngIf="invalidInputs" class="invalid-inputs">
+                Credenciales inválidas
+            </div>
             <div class="form-action">
                 <button [disabled]="loginForm.invalid" class="login social-btn">Iniciar Sesión</button>
             </div>

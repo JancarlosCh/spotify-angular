@@ -123,3 +123,9 @@
 input.ng-invalid.ng-touched {
     border: 1px solid red !important
 }
+
+.invalid-inputs {
+    font-size: var(--font-size-1);
+    text-align: center;
+    color: red
+}

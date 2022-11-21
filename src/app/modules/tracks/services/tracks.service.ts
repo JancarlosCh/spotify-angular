@@ -1,41 +1,76 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, resolveForwardRef } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.models';
 import { Observable, of } from 'rxjs';
-
-import * as dataRaw from '@data/tracks.json'
+import { map, mergeMap, catchError } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class TracksService {
-    // of(datos) -> retorna un observable de los datos pasados como argumentos
-    dataTracksTrending$: Observable<TrackModel[]> = of([]);
-    randomTracksData$: Observable<TrackModel[]> = of([]);
+    private readonly URL = environment.api;
 
-    constructor() {
-        const { data } = (dataRaw as any).default;
+    // private _httpClient: HttpClient -> permite realizar las peticiones
+    constructor(private _httpClient: HttpClient) {
+    }
 
-        this.dataTracksTrending$ = of(data);
-
-        /**
-         * new Observable((observer) => { } -> es otra forma de crear un
-         * observable, la cual ofrece un método observer.next() para gestionar
-         * los eventos
-         */
-        this.randomTracksData$ = new Observable((observer) => {
-
-            const track = {
-                name: 'testing observable',
-                album: 'angular rxjs',
-                cover: 'https://blog.consdata.tech/assets/img/posts/2020-01-09-rxjs-wstep/RxJS.png',
-                url: 'https://blog.consdata.tech/assets/img/posts/2020-01-09-rxjs-wstep/RxJS.png',
-                _id: 23,
-            };
-
-            setTimeout(() => {
-                observer.next([track]);
-            }, 3500);
+    /**
+     * Filtra un array de canciones de tal manera que retorna un array que excluye 
+     * el elemento que tenga el id especificado por parametros
+     * especificado como parametro
+     * @param tracks 
+     * @param id 
+     * @returns Promise
+     */
+    private skipById(tracks: TrackModel[], id: number): Promise<any> {
+        const temporalData = tracks.filter((track => track._id !== id))
+        return new Promise((resolve, reject) => {
+            resolve(temporalData)
         })
+    }
+
+    /**
+     * Retorna las canciones desde el API
+     * @returns Observable<any>
+     */
+    getTracks$(): Observable<any> {
+        /**
+         * A los observables se les puede aplicar pipes con tal de transformar datos
+         * mediante la función ejemploObservable.pipe(), la cual recibe operadores 
+         * que son los que facilitan la transformación de datos.
+         */
+        return this._httpClient.get(`${this.URL}/tracks`)
+            .pipe(
+                map(({ data }: any) => {
+                    return data
+                }),
+                // catchError-> Este pipe permite capturar los errores en un Observable
+                catchError(({ error, message }) => {
+                    const errorMessage = {
+                        error,
+                        message
+                    }
+                    console.log(errorMessage)
+                    // catch error devuelve un observable, por tanto, regresamos uno con .of([])
+                    return of([])
+                })
+            );
+    }
+
+    getRandomTracks$(): Observable<any> {
+        return this._httpClient.get(`${this.URL}/tracks`)
+            .pipe(
+                mergeMap(({ data }: any) => this.skipById(data, 1)),
+                catchError(({ error, message }) => {
+                    const errorMessage = {
+                        error,
+                        message
+                    }
+                    console.log(errorMessage)
+                    return of([])
+                })
+            )
     }
 }

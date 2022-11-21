@@ -17,7 +17,7 @@ export class SideBarComponent implements OnInit {
 
     customOptions: Array<any> = [];
 
-    constructor(private _trackService: TracksService, private _mService: MultimediaService) { }
+    constructor() { }
 
     /**
      * ngOnInit -> hace parte del ciclo de vida del componente y se ejecuta
@@ -68,25 +68,5 @@ export class SideBarComponent implements OnInit {
                 name: 'Mi lista °4'
             }
         ]
-
-
-        // this._mService.callback.subscribe(
-        //     (track) => { 
-        //         const trackName = track.name
-        //         console.log("trackName: ", trackName)
-        //         this.customOptions.push(
-        //             {
-        //                 name: trackName
-        //             }
-        //         )
-        //     }
-        // )
-
-        // this._trackService.randomTracksData$.subscribe(u => {
-        //     this.customOptions.push(
-        //         { name: u[0].name }
-        //     )
-        // })
-
     }
 }

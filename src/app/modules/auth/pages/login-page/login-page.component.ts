@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { AuthService } from '@modules/auth/services/auth.service';
 })
 
 export class LoginPageComponent implements OnInit {
+
+    invalidInputs: boolean = false;
+
     /**
      * nombre: FormGroup = new FormGroup({}) -> crear un formulario vacío
      * nota: el FormGroup se utiliza como un contenedor donde estarán
@@ -17,7 +21,7 @@ export class LoginPageComponent implements OnInit {
     loginForm: FormGroup = new FormGroup({});
 
     // En el constructor se deben inyectar los servicios a usar
-    constructor(private _authService: AuthService) { }
+    constructor(private _authService: AuthService, private router: Router) { }
 
     ngOnInit(): void {
         /**
@@ -43,6 +47,12 @@ export class LoginPageComponent implements OnInit {
 
     loginRequest(): void {
         const { email, password } = this.loginForm.value;
-        this._authService.sendCredentials(email, password);
+        this._authService.sendCredentials(email, password)
+        .subscribe(() => {
+            this.router.navigate(['/', 'tracks'])
+        }, error => {
+            this.invalidInputs = true;
+            console.log(error)
+        })
     }
 }
