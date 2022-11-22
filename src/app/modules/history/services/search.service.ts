@@ -13,6 +13,9 @@ export class SearchService {
     constructor(private _http: HttpClient) {}
 
     searchTrack(track: string): Observable<any> {
-        return this._http.get(`${this.URL}/tracks?src=${track}`);
+        return this._http.get(`${this.URL}/tracks?src=${track}`)
+        .pipe(
+            map((response: any) => response.data)
+        );
     }
 }
