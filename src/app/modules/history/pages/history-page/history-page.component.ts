@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TrackModel } from '@core/models/tracks.models';
+import { SearchService } from '@modules/history/services/search.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
     selector: 'app-history-page',
@@ -7,6 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HistoryPageComponent implements OnInit {
-    constructor() { }
+    // para que el pipe asycn funcione es necesario devolver un Observable
+    trackList: Observable<any> = of([]);
+
+    constructor(private searchService: SearchService) { }
+
     ngOnInit(): void { }
+
+    receiveData(term: string): void {
+        this.trackList = this.searchService.searchTrack(term);
+    }
 }

@@ -1,1 +1,11 @@
-<p>History Page</p>
+<div class="history-page">
+    <app-search-bar (callBackData)="receiveData($event)"></app-search-bar>
+    <app-play-list-body [tracks]="trackList | async "></app-play-list-body>
+</div>
+
+<!--
+    async -> se trata de un pipe de angular que se suscrube a un 
+    Observable y devuelve el último valor que ha emitido.
+    También, cuando el componente se destruye tubería cancela la suscripción automáticamente 
+    para evitar posibles pérdidas de memoria.
+-->

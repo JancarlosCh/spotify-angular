@@ -1,0 +1,21 @@
+<div class="search-component">
+    <input (ngModelChange)="onChange($event)" [(ngModel)]="src" type="text" name="search-input" id="search-input" placeholder="Artistas, canciones o podscast">
+</div>
+
+<!--
+    [()] -> Esto se conoce como banana in a box y permite que el enlace de ngModel
+    sea bidireccional, es decir, template -> component : component -> template
+
+    [(ngModel)]="variable":
+
+    ngModel -> Forma parte del core de angular y se trata de un enlace, entre algo que tienes 
+    en la definición del componente con un campo de formulario del template (vista) del componente.
+    Para poder utilizarlo se debe importar FormsModule en el módulo más cercano en jerarquía 
+    con respecto al componente
+
+    src -> En este caso es la variable encargada de almacenar los datos que se introducen
+    en el input
+
+    ngModelChange -> Este evento se dispara cuando se detectan cambios en el valor
+    almacenado en la variable, en este caso... en src.
+-->
