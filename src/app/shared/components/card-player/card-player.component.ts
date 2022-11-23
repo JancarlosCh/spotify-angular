@@ -25,17 +25,7 @@ export class CardPlayerComponent implements OnInit {
 
     // Función encargada de enviar una canción a otro componente
     sendMultimedia(track: TrackModel): void {
-        //.emit(any) -> se utiliza para emitir un evento
-        console.log(track)
-        this._multimediaService.callback.emit(track)
+        this._multimediaService.trackInfo$.next(track);
+        this._multimediaService.enabled$.next(true);
     }
-
-//    enableMediaPlayer(): void {
-//         this._enableMultimedia.callback.emit(true);
-//     }
-
-//     play(track: TrackModel): void {
-//         this.enableMediaPlayer();
-//         this.sendMultimedia(track);
-//     }
 }

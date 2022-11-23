@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MultimediaService } from '@shared/services/multimedia.service';
 
 @Component({
     selector: 'app-home-page',
@@ -7,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomePageComponent implements OnInit {
-    enable: boolean = true;
-    constructor() { }
+    constructor(public _multimediaService: MultimediaService) { }
     ngOnInit(): void { }
 }

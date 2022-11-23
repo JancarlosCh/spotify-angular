@@ -18,7 +18,6 @@ export class SearchBarComponent implements OnInit {
 
     onChange(text: string): void {
         if (text.length >= 3) {
-            console.log(text)
             this.callBackData.emit(text);
         }
     }

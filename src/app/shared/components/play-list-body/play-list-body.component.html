@@ -5,7 +5,7 @@
         <li>fecha incorporación</li>
         <li><i class="uil uil-clock-eight"></i></li>
     </ul>
-    <ul class="play-list-rows" *ngFor="let track of tracks | sortList:optionSort.property:optionSort.order">
+    <ul (click)="sendMultimedia(track)" class="play-list-rows" *ngFor="let track of tracks | sortList:optionSort.property:optionSort.order">
         <li class="track-name">
             <!--
                 *ngTemplateOutlet="nombreTemplate;context:{clave:valor}"

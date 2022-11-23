@@ -1,5 +1,5 @@
 <app-slide-bar></app-slide-bar>
-<app-media-player *ngIf="enable"></app-media-player>
+<app-media-player *ngIf="_multimediaService.enabled$ | async"></app-media-player>
 <div class="home-wrapper">
     <router-outlet></router-outlet>
 </div>

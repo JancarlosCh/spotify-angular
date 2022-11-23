@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core'
 })
 
 export class PlayListHeaderComponent implements OnInit {
+    favoriteSongs: number = 10;
     constructor() { }
     ngOnInit(): void { }
 }

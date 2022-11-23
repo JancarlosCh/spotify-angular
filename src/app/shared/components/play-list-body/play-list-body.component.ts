@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.models';
+import { MultimediaService } from '@shared/services/multimedia.service';
 
 @Component({
     selector: 'app-play-list-body',
@@ -15,7 +16,7 @@ export class PlayListBodyComponent implements OnInit {
 
     @Input() tracks: Array<TrackModel> = [];
 
-    constructor() { }
+    constructor(private _multimediaService: MultimediaService) { }
     
     ngOnInit(): void {
 
@@ -29,5 +30,11 @@ export class PlayListBodyComponent implements OnInit {
             property,
             order: order === 'asc' ? 'desc' : 'asc'
         }
+    }
+
+    // Función encargada de enviar una canción a otro componente
+    sendMultimedia(track: TrackModel): void {
+        this._multimediaService.trackInfo$.next(track);
+        this._multimediaService.enabled$.next(true);
     }
 }

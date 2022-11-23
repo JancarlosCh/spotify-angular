@@ -31,7 +31,7 @@
 <!--templates-->
 <ng-template #artistZone>
     <!--*ngIf="boolean" -> esta directiva sirve para condicionar los renderizados -->
-    <div class="artist-inside" *ngIf="true">
+    <div class="artist-inside" *ngIf="_multimediaService.trackInfo$ | async as mockCover">
         <img src="{{mockCover.cover}}" alt="" class="cover">
         <div class="track-info">
             <h3 class="track-title">{{mockCover.name}}</h3>
@@ -51,17 +51,22 @@
             <button class="arrow btn">
                 <i class ="uil uil-previous"></i>
             </button>
-            <button class="play btn"></button>
+            <button (click)="_multimediaService.togglePlayer()" class="play btn">
+                <i [ngClass]="{
+                    'uil-play-circle':state === 'paused',
+                    'uil-pause-circle':state === 'playing'
+                }" class="uil "></i>
+            </button>
             <button class="arrow btn">
                 <i class="uil uil-step-forward"></i>
             </button>
         </div>
         <div class="media-linetime">
-            <div class="time">04:00</div>
-            <span #progressBar class="time-progress">
-                <span class="time-progress-live" [style.width] = "50+'%'"></span>
+            <div class="time">{{ _multimediaService.timeElapsed$ | async }}</div>
+            <span #progressBar (click)="handlePosition($event)" class="time-progress">
+                <span class="time-progress-live" [style.width] = "(_multimediaService.playerPercentege$ | async ) + '%'"></span>
             </span>
-            <div class="time">02:00</div>
+            <div class="time">{{ _multimediaService.timeRemaining$ | async }}</div>
         </div>
     </div>
 </ng-template>
@@ -79,3 +84,9 @@
         </button>
     </div>
 </ng-template>
+
+<!--
+    _multimediaService.trackInfo$ | async as mockCover":
+    async -> nos permite suscribirnos a un observable desde la vista
+    el resultado de es puede guardarse con el operador as
+-->

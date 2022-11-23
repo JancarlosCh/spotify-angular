@@ -29,7 +29,5 @@ export class ImgBrokenDirective {
     /**
      * ElementRef -> asigna una referencia a un elemento
      */
-    constructor(private elHost:ElementRef) {
-        console.log(this.elHost)
-    }
+    constructor(private elHost:ElementRef) { }
 } 
